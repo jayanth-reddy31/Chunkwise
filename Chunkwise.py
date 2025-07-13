@@ -8,7 +8,7 @@ import faiss
 import time
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.document_loaders import UnstructuredURLLoader
+from langchain_community.document_loaders import UnstructuredURLLoader
 from langchain_groq import ChatGroq
 from sentence_transformers import SentenceTransformer
 from langchain.chains import RetrievalQAWithSourcesChain
