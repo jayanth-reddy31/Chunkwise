@@ -62,7 +62,7 @@ This project uses **RAG** to power question-answering:
 
 ## 🔄 Pipeline Flow
 
-![App Screenshot](https://raw.githubusercontent.com/jayanth-reddy31/Chunkwise/main/chunkwise_architecture.png)
+<img src="https://raw.githubusercontent.com/jayanth-reddy31/Chunkwise/main/chunkwise_architecture.png" width="500"/>
 
 
 
