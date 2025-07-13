@@ -1,5 +1,11 @@
-![App Screenshot](assets/chunkwise_UI_1.png)
-![App Screenshot](assets/chunkwise_UI_2.png)
+<table>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/jayanth-reddy31/Chunkwise/main/chunkwise_UI_1.png" width="600"/></td>
+    <td><img src="https://raw.githubusercontent.com/jayanth-reddy31/Chunkwise/main/chunkwise_UI_2.png" width="600"/></td>
+  </tr>
+</table>
+
+
 
 # 📚 URL-Based Q&A Application using LangChain, FAISS, Groq, and Streamlit
 
@@ -55,4 +61,95 @@ This project uses **RAG** to power question-answering:
 ---
 
 ## 🔄 Pipeline Flow
+
+![App Screenshot](https://raw.githubusercontent.com/jayanth-reddy31/Chunkwise/main/chunkwise_architecture.png)
+
+
+
+---
+
+## 📖 Key Concepts
+
+### 🧩 What are Chunks?
+
+- Chunks are **small segments of an article** (~500 words)  
+- Required because LLMs can’t process entire long documents directly  
+- Maintains semantic integrity via **smart splitting** and **overlapping** for context  
+
+---
+
+### ✂️ Chunking Strategies
+
+#### 1. **CharacterTextSplitter**
+- Splits text by character count and a chosen separator  
+- ❌ May still produce oversized or broken chunks  
+
+#### 2. ✅ **RecursiveCharacterTextSplitter (RECOMMENDED)**
+- Splits text **recursively** by multiple priority separators  
+  (e.g., `["\n\n", "\n", ".", " "]`)  
+- Ensures chunks are under LLM token limits  
+- Adds **chunk overlap** to preserve context  
+
+---
+
+### 🔗 Chunk Merging Logic
+
+After splitting, adjacent chunks may be **merged** to optimize LLM input usage:
+
+> Example:  
+> - ch1: 1000 tokens  
+> - ch2: 2000 tokens  
+> → Merge to create a single 3000-token input (if within model limits)
+
+---
+
+## 🧮 Embeddings & Semantic Search
+
+### 🔍 What are Embeddings?
+
+- Embeddings are **768-dimensional numeric vectors**  
+- Represent the **semantic meaning** of a sentence or chunk  
+- Generated using `all-mpnet-base-v2` SentenceTransformer
+
+### 📦 FAISS Vector DB
+
+- **In-memory** vector store for fast similarity search  
+- Ideal for small- to medium-scale applications  
+- For production-scale: use Pinecone, Chroma, or Milvus  
+
+---
+
+## 🧵 Retrieval and QA Chain
+
+### 🔁 How Retrieval Works:
+
+1. User’s question → converted to embedding  
+2. FAISS performs **vector similarity search**  
+3. Returns top `k` relevant chunks  
+4. Sends to LLM for **answer generation**
+
+---
+
+### 🧠 QA Methods
+
+#### 1. **Stuff Method**
+- All retrieved chunks are **stuffed into a single prompt**  
+- ✅ Fast and simple  
+- ❌ Breaks if token limit is exceeded  
+
+#### 2. ✅ **MapReduce Method**
+- LLM processes **each chunk independently**  
+- Summarizes individual answers into a final response  
+- ✅ Scalable for large inputs  
+- ❌ Requires **multiple LLM calls** → more processing time  
+
+---
+
+## 🖥️ Streamlit UI Features
+
+- 🔗 Accepts **up to 3 URLs**  
+- 🧠 “📥 Process URLs” button initiates scraping, splitting, embedding, and indexing  
+- ❓ Ask any question based on the articles  
+- 📌 Displays the **answer + source citations**
+
 
