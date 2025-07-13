@@ -131,7 +131,7 @@ if os.path.exists("faiss_index.index") and os.path.exists("documents.pkl") and o
             self._encoder = encoder
             self._k = k
 
-        def get_relevant_documents(self, query: str) -> List[Document]:
+        def _get_relevant_documents(self, query: str) -> List[Document]:
             query_vec = self._encoder.encode([query])
             D, I = self._index.search(np.array(query_vec), self._k)
             return [self._docs[i] for i in I[0]]
