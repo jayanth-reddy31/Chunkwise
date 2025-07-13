@@ -21,8 +21,12 @@ import requests
 from langchain.docstore.document import Document
 
 # Set Groq API Key
-from dotenv import load_dotenv
-load_dotenv() #take environment variables from .env
+#USE THIS WHEN YOUR API_KEY IS IN .env FILE
+#from dotenv import load_dotenv
+#load_dotenv() #take environment variables from .env
+
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
+
 
 # Streamlit UI
 st.subheader("Made with ❤️ by Jayanth")
