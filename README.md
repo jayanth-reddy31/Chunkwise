@@ -1,5 +1,5 @@
-![App Screenshot](assets/chunkwise_UI_2.png)
 ![App Screenshot](assets/chunkwise_UI_1.png)
+![App Screenshot](assets/chunkwise_UI_2.png)
 
 # 📚 URL-Based Q&A Application using LangChain, FAISS, Groq, and Streamlit
 
