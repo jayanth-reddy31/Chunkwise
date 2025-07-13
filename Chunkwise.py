@@ -140,7 +140,7 @@ if os.path.exists("faiss_index.index") and os.path.exists("documents.pkl") and o
             return self.get_relevant_documents(query)
 
     # Initialize Groq LLM
-    llm = ChatGroq(temperature=0, model_name="llama3-8b-8192")
+    llm = ChatGroq(temperature=0, model_name="llama3-8b-8192", api_key=GROQ_API_KEY)
 
     retriever = FAISSRetriever(index=index, docs=docs, encoder=encoder)
     
